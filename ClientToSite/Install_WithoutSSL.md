@@ -1,4 +1,4 @@
-# Cấu Hình OpenVPN Client-to-Site trên Centos7
+# Cấu Hình OpenVPN Client-to-Site trên Centos7 sử dụng routing-tunel
 ## Mục lục
 [1.Mô hình mạng] (#1)
 
@@ -187,3 +187,40 @@ systemctl start iptables
 iptables --flush
 ```
 - Tiếp theo add rules cho iptables để forward các định tuyến của kết nối (mạng 192.168.30.0) tới OpenVPN subnet (mạng 192.168.100.0)
+```sh
+iptables -I INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT 
+# Allow TUN interface connections to OpenVPN server
+iptables -I INPUT -i tun+ -j ACCEPT 
+# Allow TUN interface connections to be forwarded through other interfaces
+iptables -I FORWARD -i tun+ -j ACCEPT
+iptables -I FORWARD -i tun+ -o eth0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+iptables -I FORWARD -i eth0 -o tun+ -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+iptables -t nat -A POSTROUTING -s 192.168.30.0/24 -o eth0 -j MASQUERADE // Dải LAN bên trên
+```
+- Bật Port Forwarding : thêm dòng `net.ipv4.ip_forward=1` vào file /etc/sysctl.conf
+
+#### 4.6 Cấu hình cho client
+- Trước khi cấu hình thì copy các file ca.crt, client.crt, client.key vào client.Nhớ để ý đường dẫn để khi cấu hình file conf cho client.
+- File conf client
+```sh
+client
+;dev tap0
+dev tun
+;proto tcp
+proto udp
+remote 192.168.100.17 1194
+resolv-retry infinite
+nobind
+user nobody
+group nobody
+persist-key
+persist-tun
+ca ca.crt
+cert client01.crt
+key client01.key
+remote-cert-tls server
+comp-lzo
+verb 3
+route no-pull # Ra Internet bang gateway cua chinh client, chu khong qua VPN.
+route 8.8.8.8
+```

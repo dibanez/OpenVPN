@@ -24,7 +24,7 @@
   <li>Add thêm Ethernet header trong mọi gói tin được chuyển qua VPN tunnel.</li>
   <li>Khả năng mở rộng kém.</li>
   <li>Không thể sử dụng các thiết bị iOS, Android.</li>
-<ul>
+</ul>
 - Ưu điểm của TUN:
 <ul>
   <li>Ít traffic đi qua tunnel hơn, chỉ transport các traffic có đích đến là VPN client.</li>

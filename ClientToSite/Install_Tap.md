@@ -71,7 +71,7 @@ OS				:		Windows 7
 ```
 - Cấu hình file vars.Thay đổi tùy theo ý của bạn
 ```sh
-vi /etc/openvpn//rsa/vars
+vi /etc/openvpn/rsa/vars
 ```
 ```sh
 export KEY_COUNTRY="VN"
@@ -99,7 +99,7 @@ export KEY_OU="Meditech"
 ```
 - Tạo Key và Certificate cho Client.Nếu Không muốn chỉnh sửa gì thì các bạn nhập "Enter" hết khi được hỏi.
 ```sh
-# ./build-key client
+# ./build-key win7
 ```
 
 #### 4.4.Configure OpenVPN Server
@@ -175,7 +175,7 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
  systemctl start openvpn-bridge 
  systemctl enable openvpn-bridge 
  ```
-- Cấu hình iptables
+- Cấu hình iptables : vi /etc/sysconfig/iptables
 ```sh
 -A INPUT -p tcp -m tcp --dport 1194 -j ACCEPT
 -A INPUT -i tap+ -j ACCEPT
@@ -183,3 +183,6 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
 -A FORWARD -i tap+ -o eth0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 -A FORWARD -i eth0 -o tap+ -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 ```
+- Cuối cùng copy các file "ca.crt, win7.crt, win7.key" ở thư mục /etc/openvpn/rsa/keys sang Client.
+
+#### 4.5.Setting up the OpenVPN client application

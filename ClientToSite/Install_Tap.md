@@ -12,7 +12,7 @@
 
 <a name="1"></a>
 ### 1.Mô hình mạng
-<img src="http://image.prntscr.com/image/6953f0dfdc3e4622b5e48f48cb237ecf.png" />
+<img src="http://image.prntscr.com/image/ae2cc7e2bbc84ef89c32a21ca27f1e69.png" />
 
 <a name="2"></a>
 ### 2.Giới thiệu
@@ -174,6 +174,7 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
 ```sh
  systemctl start openvpn-bridge 
  systemctl enable openvpn-bridge 
+ ```
 - Cấu hình iptables
 ```sh
 -A INPUT -p tcp -m tcp --dport 1194 -j ACCEPT
@@ -181,5 +182,4 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
 -A FORWARD -i tap+ -j ACCEPT
 -A FORWARD -i tap+ -o eth0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 -A FORWARD -i eth0 -o tap+ -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
-
 ```

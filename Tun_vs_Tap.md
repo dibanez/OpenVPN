@@ -9,10 +9,7 @@
   <li>Khi ta muốn DHCP server trong lan cấp ip cho VPN clients.</li>
   <li></li>
 </ul>
-- TUN được sử dụng trong các trường hợp:
-<ul>
-  <li>Khi ta muốn tạo 1 subnet riêng giữa 2 đầu, và chỉ chạy trên nền IP.</li>
-</ul>
+- TUN được sử dụng trong các trường hợp:Khi ta muốn tạo 1 subnet riêng giữa 2 đầu, và chỉ chạy trên nền IP.</li>
 - Ưu điểm của TAP:
 <ul>
   <li>Có thể transport bất kì protocol nào (IPv4,IPv6, Netalk, IPX ...)</li>
@@ -29,10 +26,10 @@
 <ul>
   <li>Ít traffic đi qua tunnel hơn, chỉ transport các traffic có đích đến là VPN client.</li>
   <li>Chỉ transport các gói tin IP lớp 3.</li>
-<ul>
+</ul>
 - Nhược điểm của TUN:
 <ul>
   <li>Các traffic broadcast không được transport.</li>
   <li>Chỉ có thể transport IPV4 (bản OpenVPN 2.4 hỗ trợ IPv6)</li>
   <li>Không thể sử dụng trên bridge.</li>
-<ul>
+</ul>

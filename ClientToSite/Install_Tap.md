@@ -1,4 +1,4 @@
-# Cấu Hình OpenVPN Client-to-Site trên Centos6.7 sử dụng Tap-Bridging
+# Cấu Hình OpenVPN Client-to-Site trên Centos7 sử dụng Tap-Bridging
 ## Mục lục
 [1.Mô hình mạng] (#1)
 
@@ -186,3 +186,5 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
 - Cuối cùng copy các file "ca.crt, win7.crt, win7.key" ở thư mục /etc/openvpn/rsa/keys sang Client.
 
 #### 4.5.Setting up the OpenVPN client application
+- Sau khi copy các file trên sang client, thì tiến hành cài đặt OpenVPN client theo link: http://openvpn.net/index.php/open-source/downloads.html
+- Sau khi cài đặt

@@ -60,7 +60,7 @@ OS				:		Windows 7
 <a name="4"></a>
 ### 4.Cấu hình chi tiết
 #### 4.1.Cấu hình VPN trên Server1 (role Server)
-- Tiến hành cài đặt và tạo các key giống như trong bài https://github.com/kieulam141/OpenVPN/blob/master/ClientToSite/Install_Tun.md.
+- Tiến hành cài đặt và tạo các key giống như trong bài https://github.com/kieulam141/OpenVPN/blob/master/CA_Certificate_Keys.md.
 - Thay đổi 1 chút là tạo key server tên "Server1" , key client tên "Server2".
 - Cấu hình file conf
 ```sh

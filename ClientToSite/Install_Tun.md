@@ -66,43 +66,12 @@ OS				:		Windows 7
 # cp server.conf /etc/openvpn
 ```
 #### 4.3.Configure easy-rsa
-- Tạo Keys và Certificates
+- Copy các scprit để thiết lập CA,certificate và private keys.
 ```sh
 # mkdir /etc/openvpn/rsa
 # cp –rf /usr/share/easy-rsa/2.0/* /etc/openvpn/rsa
 ```
-- Cấu hình file vars.Thay đổi tùy theo ý của bạn
-```sh
-vi /etc/openvpn//rsa/vars
-```
-```sh
-export KEY_COUNTRY="VN"
-export KEY_PROVINCE="HN"
-export KEY_CITY="HN"
-export KEY_ORG="Meditech"
-export KEY_EMAIL="kieutunglam@gmail.com"
-export KEY_OU="Meditech"
-```
-```sh
-# cd /etc/openvpn/rsa/
-# source ./vars
-```
-- Chạy build-ca scripts để tạo Certificates + keys.Nếu Không muốn chỉnh sửa gì thì các bạn nhập "Enter" hết khi được hỏi.
-```sh
-# ./build-ca
-```
-- Tiếp theo tạo Key và Certificate cho server.Nếu Không muốn chỉnh sửa gì thì các bạn nhập "Enter" hết khi được hỏi.
-```sh
-# ./build-key-server server
-```
-- Tạo file Tạo file trao đổi key Diffie-Hellman
-```sh
-# ./build-dh
-```
-- Tạo Key và Certificate cho Client.Nếu Không muốn chỉnh sửa gì thì các bạn nhập "Enter" hết khi được hỏi.
-```sh
-# ./build-key client
-```
+- Sau đó tiến hành thiết lập theo link sau: https://github.com/kieulam141/OpenVPN/blob/master/CA_Certificate_Keys.md
 
 #### 4.4.Configure OpenVPN Server
 ```sh

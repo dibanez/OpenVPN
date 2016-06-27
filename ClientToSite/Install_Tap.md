@@ -12,7 +12,7 @@
 
 <a name="1"></a>
 ### 1.Mô hình mạng
-<img src="http://image.prntscr.com/image/ae2cc7e2bbc84ef89c32a21ca27f1e69.png" />
+<img src="http://image.prntscr.com/image/d3963a3a3bbd42aa83c39564eaeb4413.png" />
 
 <a name="2"></a>
 ### 2.Giới thiệu
@@ -20,7 +20,8 @@
 --------------------------------------------------------------
 OpenVPN Server
 --------------------------------------------------------------
-IP address		:		192.168.100.10
+IP Wan		:		192.168.100.10
+IP Lan  :  192.168.20.254
 OS				:		Centos 7 Final
 ```
 
@@ -28,7 +29,7 @@ OS				:		Centos 7 Final
 --------------------------------------------------------------
 VPN Client (bên ngoài)
 --------------------------------------------------------------
-IP address		:		192.168.100.17
+IP Wan		:		192.168.100.17
 OS				:		Windows 7
 ```
 
@@ -93,7 +94,7 @@ export KEY_OU="Meditech"
 ```sh
 # ./build-key-server server
 ```
-- Tạo file dh2048.pem trong thư mục /etc/openvpn/rsa/keys/
+- Tạo file trao đổi key Diffie-Hellman
 ```sh
 # ./build-dh
 ```

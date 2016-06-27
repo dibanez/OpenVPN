@@ -188,7 +188,7 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
 #### 4.5.Setting up the OpenVPN client application
 - Sau khi copy các file trên sang client, thì tiến hành cài đặt OpenVPN client theo link: http://openvpn.net/index.php/open-source/downloads.html
 - Sau khi cài đặt copy file client.openvpn ở đường dẫn "C:\Program Files\OpenVPN\sample-config" vào trong đường dẫn "C:\Program Files\OpenVPN\config" và bạn có thể đổi tên theo ý của bạn.
-- Copy file "ca.crt", "client01.crt", "client01.key" vào chung đường dẫn với file config hoặc 1 folder nào đó, và phải nhớ đường dẫn để chỉ ra trong file config.
+- Copy file "ca.crt", "win7.crt", "win7.key" vào chung đường dẫn với file config hoặc 1 folder nào đó, và phải nhớ đường dẫn để chỉ ra trong file config.
 - Mở file client.ovpn và chỉnh sửa:
 ```sh
 # it's OK with default
@@ -200,7 +200,7 @@ dev tap0
 proto tcp
 ;proto udp
 # OpenVPN server's global IP abnd port (replace to your own environment)
-remote YourServerIP 1194
+remote 192.168.100.10 1194   #192.168.100.10: IP VPNServer
 # retry resolving
 resolv-retry infinite
 # no bind for local port
@@ -221,3 +221,4 @@ verb 3
 
 <a name="5"></a>
 ### 5.Tham Khảo
+- http://www.server-world.info/en/note?os=CentOS_7&p=openvpn&f=1

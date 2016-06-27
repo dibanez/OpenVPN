@@ -12,7 +12,7 @@
 
 <a name="1"></a>
 ### 1.Mô hình mạng
-<img src="http://i.imgur.com/ODSh1q8.png" />
+<img src="http://image.prntscr.com/image/d3963a3a3bbd42aa83c39564eaeb4413.png" />
 
 <a name="2"></a>
 ### 2.Giới thiệu

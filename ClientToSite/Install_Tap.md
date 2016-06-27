@@ -218,7 +218,8 @@ comp-lzo
 # log level
 verb 3
 ```
-- Cuối cùng mở ứng dụng OpenVPN trên client với quyền admin và ping đến địa chỉ bridge của VPNServer và địa chỉ của VPN client bên trong.
+- Cuối cùng mở ứng dụng OpenVPN trên client với quyền admin và connect tới VPNServer, khi đó client sẽ được cấp ip trong dải 192.168.20.0/24.
+- Ping đến địa chỉ bridge của VPNServer và địa chỉ của VPN client bên trong xem đã thành công hay chưa.
 
 <a name="5"></a>
 ### 5.Tham Khảo

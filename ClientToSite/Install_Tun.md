@@ -34,14 +34,6 @@ OS				:		Windows 7
 
 ```sh
 --------------------------------------------------------------
-VPN Client (bên ngoài)
---------------------------------------------------------------
-IP address		:		192.168.100.9
-OS				:		Centos 6.7
-```
-
-```sh
---------------------------------------------------------------
 VPN Client (bên trong mạng lan)
 --------------------------------------------------------------
 IP address		:		192.168.20.10
@@ -188,34 +180,36 @@ iptables --flush
 ```
 - Tiếp theo add rules cho iptables để forward các định tuyến của kết nối (mạng 192.168.30.0) tới OpenVPN subnet (mạng 192.168.100.0)
 ```sh
-iptables -I INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT 
+iptables -I INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT    #eth0 card wan
 # Allow TUN interface connections to OpenVPN server
 iptables -I INPUT -i tun+ -j ACCEPT 
 # Allow TUN interface connections to be forwarded through other interfaces
 iptables -I FORWARD -i tun+ -j ACCEPT
 iptables -I FORWARD -i tun+ -o eth0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 iptables -I FORWARD -i eth0 -o tun+ -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
-iptables -t nat -A POSTROUTING -s 192.168.30.0/24 -o eth0 -j MASQUERADE // Dải LAN bên trên
+iptables -t nat -A POSTROUTING -s 192.168.30.0/24 -o eth0 -j MASQUERADE // nat Dải LAN bên trong để có thể ra Internet
 ```
 - Bật Port Forwarding : thêm dòng `net.ipv4.ip_forward=1` vào file /etc/sysctl.conf
 
 #### 4.6 Cấu hình cho client
-- Trước khi cấu hình thì copy các file ca.crt, client.crt, client.key vào client.Nhớ để ý đường dẫn để khi cấu hình file conf cho client.
-- File conf client
+- Sau khi copy các file trên sang client, thì tiến hành cài đặt OpenVPN client theo link: http://openvpn.net/index.php/open-source/downloads.html
+- Sau khi cài đặt copy file client.openvpn ở đường dẫn "C:\Program Files\OpenVPN\sample-config" vào trong đường dẫn "C:\Program Files\OpenVPN\config" và bạn có thể đổi tên theo ý của bạn.
+- Copy file "ca.crt", "client01.crt", "client01.key" vào chung đường dẫn với file config hoặc 1 folder nào đó, và phải nhớ đường dẫn để chỉ ra trong file config.
+- Mở file client.ovpn và chỉnh sửa:
 ```sh
 client
 ;dev tap0
 dev tun
 ;proto tcp
 proto udp
-remote 192.168.100.17 1194
+remote 192.168.100.17 1194      #192.168.100.17:IP VPNServer
 resolv-retry infinite
 nobind
 user nobody
 group nobody
 persist-key
 persist-tun
-ca ca.crt
+ca ca.crt           # Nếu bạn để các file certificate của client ở thư mục # thì phải chỉ rõ đường dẫn.
 cert client01.crt
 key client01.key
 remote-cert-tls server
@@ -224,3 +218,7 @@ verb 3
 route no-pull # Ra Internet bang gateway cua chinh client, chu khong qua VPN.
 route 8.8.8.8
 ```
+- Cuối cùng mở ứng dụng OpenVPN trên client với quyền admin và ping đến địa chỉ bridge của VPNServer và địa chỉ của VPN client bên trong.
+<a name="5"></a>
+### 5.Tham Khảo
+- https://www.unixmen.com/install-openvpn-centos-7/

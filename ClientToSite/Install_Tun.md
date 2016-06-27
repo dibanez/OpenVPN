@@ -92,7 +92,7 @@ export KEY_OU="Meditech"
 ```sh
 # ./build-key-server server
 ```
-- Tạo file dh2048.pem trong thư mục /etc/openvpn/rsa/keys/
+- Tạo file Tạo file trao đổi key Diffie-Hellman
 ```sh
 # ./build-dh
 ```

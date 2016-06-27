@@ -12,7 +12,7 @@
 
 <a name="1"></a>
 ### 1.Mô hình mạng
-<img src="http://image.prntscr.com/image/d3963a3a3bbd42aa83c39564eaeb4413.png" />
+<img src="http://image.prntscr.com/image/8a10d95e7b304f33a2ecd72f1c7d05ca.png" />
 
 <a name="2"></a>
 ### 2.Giới thiệu

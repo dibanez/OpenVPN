@@ -180,11 +180,44 @@ ExecStopPost=/bin/echo 0 > /proc/sys/net/ipv4/ip_forward # disable routing trên
 -A INPUT -p tcp -m tcp --dport 1194 -j ACCEPT
 -A INPUT -i tap+ -j ACCEPT
 -A FORWARD -i tap+ -j ACCEPT
--A FORWARD -i tap+ -o eth0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i tap+ -o eth0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT  #eth0 card wan
 -A FORWARD -i eth0 -o tap+ -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 ```
 - Cuối cùng copy các file "ca.crt, win7.crt, win7.key" ở thư mục /etc/openvpn/rsa/keys sang Client.
 
 #### 4.5.Setting up the OpenVPN client application
 - Sau khi copy các file trên sang client, thì tiến hành cài đặt OpenVPN client theo link: http://openvpn.net/index.php/open-source/downloads.html
-- Sau khi cài đặt
+- Sau khi cài đặt copy file client.openvpn ở đường dẫn "C:\Program Files\OpenVPN\sample-config" vào trong đường dẫn "C:\Program Files\OpenVPN\config" và bạn có thể đổi tên theo ý của bạn.
+- Copy file "ca.crt", "client01.crt", "client01.key" vào chung đường dẫn với file config hoặc 1 folder nào đó, và phải nhớ đường dẫn để chỉ ra trong file config.
+- Mở file client.ovpn và chỉnh sửa:
+```sh
+# it's OK with default
+client
+# device name which you specified in the server's config
+dev tap0
+;dev tun
+# protocol which you specified in the server's config
+proto tcp
+;proto udp
+# OpenVPN server's global IP abnd port (replace to your own environment)
+remote YourServerIP 1194
+# retry resolving
+resolv-retry infinite
+# no bind for local port
+nobind
+# enable persist options
+persist-key
+persist-tun
+# path for certificates
+ca ca.crt   # Nếu bạn để các file certificate của client ở thư mục # thì phải chỉ rõ đường dẫn.
+cert win7.crt
+key win7.key
+# enable compress
+comp-lzo
+# log level
+verb 3
+```
+- Cuối cùng mở ứng dụng OpenVPN trên client với quyền admin và ping đến địa chỉ bridge của VPNServer và địa chỉ của VPN client bên trong.
+
+<a name="5"></a>
+### 5.Tham Khảo

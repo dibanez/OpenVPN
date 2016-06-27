@@ -20,7 +20,9 @@
 --------------------------------------------------------------
 OpenVPN Server
 --------------------------------------------------------------
-IP address		:		192.168.100.13
+IP Wan		:		192.168.100.13
+IP Lan    :   192.168.20.254
+IP tunel  :   192.168.30.x
 OS				:		Centos 7 Final
 ```
 
@@ -29,6 +31,7 @@ OS				:		Centos 7 Final
 VPN Client (bên ngoài)
 --------------------------------------------------------------
 IP address		:		192.168.100.9
+IP tunel:     :   192.168.30.x
 OS				:		Windows 7
 ```
 
@@ -218,7 +221,8 @@ verb 3
 route no-pull # Ra Internet bang gateway cua chinh client, chu khong qua VPN.
 route 8.8.8.8
 ```
-- Cuối cùng mở ứng dụng OpenVPN trên client với quyền admin và ping đến địa chỉ bridge của VPNServer và địa chỉ của VPN client bên trong.
+- Cuối cùng mở ứng dụng OpenVPN trên client với quyền admin, connect tới VPN Server và sẽ được cấp 1 ip trong dải 192.168.30.0/24.
+- Ping đến địa chỉ tunel của VPNServer và địa chỉ của VPN client bên trong để kiểm tra đã thành công hay chưa.
 <a name="5"></a>
 ### 5.Tham Khảo
 - https://www.unixmen.com/install-openvpn-centos-7/

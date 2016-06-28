@@ -17,4 +17,5 @@
 
 #### 2.Site-to-Site
 - Cấu hình OpenVPN Site-to-Site sử dụng mode routing-tunel (chỉ sử dụng được mode này, không sử dụng được tap-bridging) : https://github.com/kieulam141/OpenVPN/blob/master/Site_to_Site/Install.md
-
+- Cấu hình OpenVPN Site-to-MultiSite sử dụng mode routing-tunel
+https://github.com/kieulam141/OpenVPN/blob/master/Site_to_Site/Install_Site-to-Multisite.md

@@ -107,7 +107,7 @@ verb 3
 - phân quyền cho scrpit: `chmod 700 /etc/openvpn/scripts/routes.up.sh`
 - Cấu hình iptables : 
 ```sh
-iptables -A INPUT -i eth0 -m udp -p udp -s 10.255.255.1 --dport 1194 -j ACCEPT        #eth0: card wan
+iptables -A INPUT -i eth0 -m udp -p udp -s 192.168.100.10 --dport 1194 -j ACCEPT        #eth0: card wan
 iptables -A FORWARD -i eth1 -o tun0 -j ACCEPT                                         #eth1: card lan
 iptables -A FORWARD -i tun0 -o eth1 -j ACCEPT
 ```
@@ -152,12 +152,12 @@ verb 3
 ```sh
 #!/bin/sh
 
-/sbin/route add -net 192.168.10.0 netmask 255.255.255.0 gw 10.10.10.1
+/sbin/route add -net 192.168.10.0 netmask 255.255.255.0 gw 10.10.10.2
 ```
 - phân quyền cho scrpit: `chmod 700 /etc/openvpn/scripts/routes.up.sh`
 - Cấu hình iptables : 
 ```sh
-iptables -A INPUT -i eth0 -m udp -p udp -s 10.255.255.1 --dport 1194 -j ACCEPT        #eth0: card wan
+iptables -A INPUT -i eth0 -m udp -p udp -s 192.168.100.11 --dport 1194 -j ACCEPT        #eth0: card wan
 iptables -A FORWARD -i eth1 -o tun0 -j ACCEPT                                         #eth1: card lan
 iptables -A FORWARD -i tun0 -o eth1 -j ACCEPT
 ```

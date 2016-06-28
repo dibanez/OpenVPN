@@ -161,13 +161,13 @@ từng dải Lan bên trong 2 miền Server đấy.
 ```sh
 #!/bin/sh
 
-/sbin/route add -net 192.168.20.0 netmask 255.255.255.0 gw 10.10.10.2
+/sbin/route add -net 192.168.20.0 netmask 255.255.255.0 gw 10.10.10.1
 ```
 - Cấu hình script routing Lan bên trong Server3: vi /etc/openvpn/scripts/routes2.up.sh
 ```sh
 #!/bin/sh
 
-/sbin/route add -net 192.168.30.0 netmask 255.255.255.0 gw 10.10.10.3
+/sbin/route add -net 192.168.30.0 netmask 255.255.255.0 gw 10.10.10.1
 ```
 - Phân quyền cho scrpit: `chmod 700 /etc/openvpn/scripts/routes.up.sh /etc/openvpn/scripts/routes2.up.sh `
 - Cấu hình iptables : 
@@ -229,7 +229,7 @@ iptables -A FORWARD -i tun0 -o eth1 -j ACCEPT
 ```
 - Khởi động dịch vụ : `service openvpn start`
 
-#### 4.2.Cấu hình VPN trên Server2 (role Client)
+#### 4.3.Cấu hình VPN trên Server2 (role Client)
 - Chỉ tiến hành cài đặt dịch vụ OpenVPn mà không cần tạo các key hay certificate.
 - Copy các key và certificate mà Server1 đã tạo ra ở trên về đường dẫn /etc/openvpn/keys/
 - Cấu hình file conf: vi /etc/sysconfig/server.conf

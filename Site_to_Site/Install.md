@@ -54,11 +54,13 @@ OS				:		Windows 7
 
 <a name="3"></a>
 ### 3.Các bước triển khai
-- Cấu hình VPN trên VPNServer1 (role Server)
-- Cấu hình VPN trên VPNServer2 (role Client)
+- [Cấu hình VPN trên VPNServer1-role Server]  (#4.1)
+- [Cấu hình VPN trên VPNServer2-role Client]  (#4.2)
 
 <a name="4"></a>
 ### 4.Cấu hình chi tiết
+
+<a name="4.1"></a>
 #### 4.1.Cấu hình VPN trên Server1 (role Server)
 - Tiến hành cài đặt và tạo các key giống như trong bài https://github.com/kieulam141/OpenVPN/blob/master/CA_Certificate_Keys.md.
 - Thay đổi 1 chút là tạo key server tên "Server1" , key client tên "Server2".
@@ -113,6 +115,7 @@ iptables -A FORWARD -i tun0 -o eth1 -j ACCEPT
 ```
 - Khởi động dịch vụ : `service openvpn start`
 
+<a name="4.2"></a>
 #### 4.2.Cấu hình VPN trên Server2 (role Client)
 - Chỉ tiến hành cài đặt dịch vụ OpenVPn mà không cần tạo các key hay certificate.
 - Copy các key và certificate mà Server1 đã tạo ra ở trên về đường dẫn /etc/openvpn/keys/

@@ -1,5 +1,6 @@
 # Cấu Hình OpenVPN Client-to-Site trên Centos7 sử dụng routing-tunel
 ## Mục lục
+
 [1.Mô hình mạng] (#1)
 
 [2.Giới thiệu] (#2)
